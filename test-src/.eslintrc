@@ -1,0 +1,9 @@
+{
+  "rules": {
+    "no-unused-expressions": "off"
+  },
+  "globals": {
+    "describe": true,
+    "it": true
+  }
+}

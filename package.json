@@ -4,7 +4,8 @@
   "description": "User Server for multi site setup",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-reset": "rm -rf test && mkdir test && node_modules/babel-cli/bin/babel.js -d ./test ./test-src && cp ./test-src/mocha.opts ./test",
+    "test": "npm run test-reset && NODE_ENV=development ./node_modules/.bin/mocha",
     "clean": "rm -rf build && mkdir build",
     "check-npm": "nsp check",
     "build-server": "npm run clean && node_modules/babel-cli/bin/babel.js -d ./build ./server",
@@ -13,6 +14,9 @@
     "start-dev": "NODE_ENV=development node_modules/babel-cli/bin/babel-node.js ./server/index.js",
     "start-dev-debug": "NODE_ENV=development node_modules/babel-cli/bin/babel-node.js --debug ./server/index.js",
     "run-dev": "npm run build-server && npm run start-dev"
+  },
+  "eslintConfig": {
+    "root": true
   },
   "author": "Brent Crocker",
   "license": "ISC",
@@ -29,6 +33,7 @@
   "dependencies": {
     "body-parser": "^1.15.1",
     "bunyan": "^1.8.1",
+    "chai": "^3.5.0",
     "chalk": "^1.1.3",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
@@ -37,9 +42,11 @@
     "helmet": "^2.1.1",
     "jade": "^1.11.0",
     "method-override": "^2.3.6",
+    "mocha": "^3.0.1",
     "mongoose": "^4.5.0",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
-    "redis": "^2.6.2"
+    "redis": "^2.6.2",
+    "request": "^2.74.0"
   }
 }
