@@ -1,6 +1,6 @@
-import * as config from './app/configs';
-import { default as http } from 'http';
-import { general as logger } from './app/logger';
+import http from 'http';
+import * as config from './configs';
+import { general as logger } from './logger';
 // import {default as express} from 'express';
 
 const app = config.expressConfig(process.env.NODE_ENV);

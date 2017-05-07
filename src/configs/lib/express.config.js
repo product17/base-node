@@ -1,19 +1,20 @@
-import { default as path } from 'path';
-import { default as express } from 'express';
-import { settings as config } from './settings.config';
-import { default as compress } from 'compression';
-import { default as morgan } from 'morgan';
-import { default as methodOverride } from 'method-override';
-import { default as helmet } from 'helmet';
-import { default as bodyParser } from 'body-parser';
-import { default as cookieParser } from 'cookie-parser';
+import path from 'path';
+import express from 'express';
+import compress from 'compression';
+import morgan from 'morgan';
+import methodOverride from 'method-override';
+import helmet from 'helmet';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import settings from './settings.config';
+import router from '../../router';
 import { general as logger } from '../../logger';
 
 export default function (env) {
   const app = express();
 
   // Set the port from the config file
-  app.set('port', config[env].port);
+  app.set('port', settings[env].port);
 
   // Passing the request url to environment locals
   app.use((req, res, next) => {
@@ -79,7 +80,7 @@ export default function (env) {
   app.use('/public', express.static(path.join(__dirname, '../../../public')));
 
   // Include Routes here
-
+  app.use(router);
 
   // Need to setup error module
   app.use((err, req, res, next) => {

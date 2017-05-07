@@ -1,4 +1,4 @@
-export const settings = {
+export default {
   development: {
     app: 'Base Node App',
     db_path: 'mongodb://localhost:27017',

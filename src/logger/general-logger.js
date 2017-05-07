@@ -1,9 +1,9 @@
-import { default as bunyan } from 'bunyan';
-import { settings } from '../configs/lib/settings.config';
+import bunyan from 'bunyan';
+import configs from '../configs/lib/settings.config';
 
-const configDetails = settings[process.env.NODE_ENV];
+const configDetails = configs[process.env.NODE_ENV];
 
-const logger = bunyan.createLogger({
+export default bunyan.createLogger({
   name: configDetails.app,
   streams: [
     {
@@ -11,8 +11,7 @@ const logger = bunyan.createLogger({
       stream: configDetails.logging.info,
       period: '1d',
       count: 3,
-    },
-    {
+    }, {
       level: 'error',
       path: configDetails.logging.error,
       period: '1d',
@@ -20,5 +19,3 @@ const logger = bunyan.createLogger({
     },
   ],
 });
-
-export { logger as default };
