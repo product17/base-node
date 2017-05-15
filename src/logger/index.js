@@ -1,3 +1,5 @@
-import { default as general } from './general-logger';
+import general from './general-logger';
 
-export { general };
+export default {
+  general,
+};

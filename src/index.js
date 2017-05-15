@@ -1,6 +1,6 @@
 import http from 'http';
 import * as config from './configs';
-import { general as logger } from './logger';
+import logger from './logger';
 // import {default as express} from 'express';
 
 const app = config.expressConfig(process.env.NODE_ENV);
@@ -17,11 +17,11 @@ function handleError (error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      logger.error(`${bind} requires elevated privileges`);
+      logger.general.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      logger.error(`${bind} is already in use`);
+      logger.general.error(`${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -33,7 +33,7 @@ function handleError (error) {
 function handleListening () {
   const addr = server.address();
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
-  logger.info(`Listening on ${bind}`);
+  logger.general.info(`Listening on ${bind}`);
 }
 
 server.listen(app.get('port'));
