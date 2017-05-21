@@ -1,6 +1,6 @@
 {
   "name": "base_node_project",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "User Server for multi site setup",
   "main": "index.js",
   "scripts": {
